@@ -2,4 +2,16 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p My second server with #{title}
+  button(type="button", class="btn btn-secondary"  onclick="gofaster()") Press Me
+  div(id="faster") <i>Increase the speed</i>
+  a(href="mobile") Mobile Search 
+  script.
+    var mph = 20;
+    var change = 1;
+    function gofaster(){
+      mph = mph + change;
+      change = change + 1;
+      var result = document.getElementById("faster");
+      result.innerHTML = `MPH ${mph} with change ${change}`
+    }

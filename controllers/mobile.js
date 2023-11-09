@@ -15,7 +15,7 @@ exports.mobile_detail = async function(req, res) {
 exports.mobile_create_post = async function(req, res) {
     console.log(req.body)
     let document = new Mobiles();
-    document.mobile_name = req.body.mobile_name;
+    document.mobile_brand = req.body.mobile_brand;
     document.mobile_specification = req.body.mobile_specification;
     document.mobile_cost = req.body.mobile_cost;
     try{

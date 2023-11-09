@@ -3,26 +3,10 @@ extends layout
 block content
   h1= title
   -
-    let results = [
-      {
-        "mobile_brand" : "Iphone",
-        "mobile_specification" : "6GB RAM",
-        "mobile_cost" : "1100"
-      },
-      {
-        "mobile_brand" : "Samsung",
-        "mobile_specification" : "16GB RAM",
-        "mobile_cost" : "900"
-      },
-      {
-        "mobile_brand" : "Motorola",
-        "mobile_specification" : "6GB RAM",
-        "mobile_cost" : "600"
-      },
-    ]
+    let items = results
   div(class = "container-fluid")
     div(class = "row")
-      each item,index in results
+      each item,index in items
         div(class = "col-sm-2" onclick = `buy (${index})`) Brand : #{item.mobile_brand}
         div(class = "col-sm-2" onclick = `buy (${index})`) Specification : #{item.mobile_specification}
         div(class = "col-sm-2" onclick = `buy (${index})`) Cost : #{item.mobile_cost}

@@ -14,11 +14,13 @@ var resourceRouter = require('./routes/resource');
 
 var app = express();
 
-require('dotenv').config();
-var Mobile = require("./models/mobile");
+//require('dotenv').config();
+const dotenv = require("dotenv");
+dotenv.config();
+//var Mobile = require("./models/mobile");
 const connectionString = process.env.MONGO_CON
 mongoose = require('mongoose');
-mongoose.connect(connectionString);
+mongoose.connect("mongodb+srv://chiranjeeviankaiah6:Chiranjeevi%406@cluster0.jurzawm.mongodb.net/?retryWrites=true&w=majority");
 
 //Get the default connection
 var db = mongoose.connection;

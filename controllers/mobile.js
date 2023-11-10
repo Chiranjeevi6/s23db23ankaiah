@@ -1,3 +1,4 @@
+const mobile = require('../models/mobile');
 var Mobiles = require('../models/mobile');
 exports.mobile_list = async function(req, res) {
     try{
@@ -9,8 +10,15 @@ exports.mobile_list = async function(req, res) {
     }
 };
 exports.mobile_detail = async function(req, res) {
-    res.send('NOT IMPLEMENTED: Mobile detail: ' + req.params.id);
-};
+    console.log("detail" + req.params.id)
+    try {
+    result = await mobile.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    };
  
 exports.mobile_create_post = async function(req, res) {
     console.log(req.body)
@@ -29,8 +37,21 @@ exports.mobile_create_post = async function(req, res) {
 exports.mobile_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: Mobile delete DELETE ' + req.params.id);
 };
-exports.mobile_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: Mobile update PUT' + req.params.id);
+exports.mobile_update_put = async function(req, res) {
+console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
+try {
+let toUpdate = await mobile.findById( req.params.id)
+if(req.body.mobile_brand) toUpdate.mobile_brand = req.body.mobile_brand;
+if(req.body.mobile_cost) toUpdate.mobile_cost = req.body.mobile_cost;
+if(req.body.mobile_specification) toUpdate.mobile_specification = req.body.mobile_specification;
+let result = await toUpdate.save();
+console.log("Sucess " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+}
 };
 exports.mobile_view_all_Page = async function(req, res) {
     try

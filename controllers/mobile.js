@@ -76,6 +76,7 @@ exports.mobile_view_all_Page = async function(req, res) {
         res.status(500);
         res.send(`{"error": ${err}}`);
     }
+};
     exports.mobile_view_one_Page = async function(req, res) {
         console.log("single view for id " + req.query.id)
         try{
@@ -86,5 +87,14 @@ exports.mobile_view_all_Page = async function(req, res) {
             res.status(500)
             res.send(`{'error': '${err}'}`);
         }
-     };
 };
+exports.mobile_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('mobilecreate', { title: 'Mobile Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };

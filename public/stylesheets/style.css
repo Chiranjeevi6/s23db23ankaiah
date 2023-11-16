@@ -7,7 +7,12 @@ a {
   color: #00B7FF;
 }
 .mobileAttr {
-  background-color: aquamarine;
+  background-color: cyan;
+  text-align: justify;
+  color: blue;
+  font-family: verdana;
+  font-size: 10px;
   width: 120px;
+  text-shadow: 2px 2px 8px #FF0000;
   }
   

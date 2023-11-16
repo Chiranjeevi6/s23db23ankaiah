@@ -1,0 +1,20 @@
+extends layout
+block content
+    h1= title
+ 
+    - let mobileid = toShow._id
+    - let mobile_brand = toShow.mobile_brand
+    - let mobile_specification = toShow.mobile_specificagtion
+    - let mobile_cost = toShow.mobile_cost
+    div
+        div.row
+            div(class='mobileAttr mr-3') Mobile Id is: #{mobileid}
+            br
+        div.row
+            div(class='mobileAttr mr-3') Mobile Brand is: #{mobile_brand}
+            br
+        div.row
+            div(class='mobileAttr mr-3') Mobile Specification is: #{mobile_specification}
+            br
+        div.row
+            div(class='mobileAttr mr-3') Mobile Cost is: #{mobile_cost}

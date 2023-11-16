@@ -34,9 +34,21 @@ exports.mobile_create_post = async function(req, res) {
         res.send(`{"error" : ${err}}`);
     }
 };
-exports.mobile_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: Mobile delete DELETE ' + req.params.id);
-};
+//exports.mobile_delete = function(req, res) {
+    exports.mobile_delete = async function(req, res) {
+        console.log("delete " + req.params.id)
+        try {
+        result = await mobile.findByIdAndDelete( req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+        } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+        }
+        };
+        
+//res.send('NOT IMPLEMENTED: Mobile delete DELETE ' + req.params.id);
+//};
 exports.mobile_update_put = async function(req, res) {
 console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
 try {
@@ -64,4 +76,15 @@ exports.mobile_view_all_Page = async function(req, res) {
         res.status(500);
         res.send(`{"error": ${err}}`);
     }
+    exports.mobile_view_one_Page = async function(req, res) {
+        console.log("single view for id " + req.query.id)
+        try{
+            result = await mobile.findById( req.query.id)
+            res.render('mobiledetail',{ title: 'Mobile Detail', toShow: result });
+        }
+        catch(err){
+            res.status(500)
+            res.send(`{'error': '${err}'}`);
+        }
+     };
 };

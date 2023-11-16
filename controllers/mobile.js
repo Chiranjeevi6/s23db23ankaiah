@@ -98,3 +98,27 @@ exports.mobile_create_Page = function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
     };
+    exports.mobile_update_Page = async function(req, res) {
+        console.log("update view for item "+req.query.id)
+        try{
+        let result = await mobile.findById(req.query.id)
+        res.render('mobileupdate', { title: 'Mobile Update', toShow: result });
+        }
+        catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+        }
+        };
+        exports.mobile_delete_Page = async function(req, res) {
+            console.log("Mobile view for id " + req.query.id)
+            try{
+            result = await mobile.findById(req.query.id)
+            res.render('mobiledelete', { title: 'Mobile Delete', toShow: result });
+            }
+            catch(err){
+            res.status(500)
+            res.send(`{'error': '${err}'}`);
+            }
+            };
+            
+        

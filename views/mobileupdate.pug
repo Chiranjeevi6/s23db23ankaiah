@@ -1,0 +1,49 @@
+extends layout
+block content
+    h1= title
+ 
+    if (toShow == null)
+        h2 No instance to update
+   
+    else
+        - let mobileid = toShow._id
+        - let mobile_brand = toShow.mobile_brand
+        - let mobile_specification = toShow.mobile_specification
+        - let mobile_cost = toShow.mobile_cost
+       
+        div.row(class='mb-2')
+            div.mr-1 ID is
+            div #{mobileid}
+       
+        - let actionid = "/resource/mobile/" + mobileid
+       
+        form(id='MobileForm', action= actionid, method="PUT")
+            div.form-group
+                label.mobileAttr(for='mobile_brand') Mobile Brand
+                input#mobile_brand(type='text', name='mobile_brand',value= mobile_brand)
+            div.form-group
+                label.mobileAttr(for='mobile_specification') Mobile Specification
+                input#dmobile_specification(type='text', name='mobile_specification',value= mobile_specification)
+            div.form-group
+                label.mobileAttr(for='mobile_cost') Mobile cost
+                input#mobile_cost(type='number', name='mobile_cost',value= mobile_cost)
+                br
+                br
+            input(type="submit")
+           
+            script.
+                document.forms['MobileForm'].addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    fetch(event.target.action, {
+                        method: 'PUT',
+                        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+                    }).then((resp) => {
+                        return resp.json(); // or resp.text() or whatever the server sends
+                    }).then((body) => {
+                        alert("Update succeded")
+                        // TODO handle body
+                    }).catch((error) => {
+                        // TODO handle error
+                        alert("Update failed " + error )
+                    });
+                });

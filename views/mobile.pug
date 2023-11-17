@@ -1,19 +1,19 @@
 extends layout
-
+ 
 block content
   h1= title
   -
-    let items = results
-  div(class = "container-fluid")
-    div(class = "row")
+    let items  = results
+  div(class= "container-fluid")
+    div(class = "row m-1")
       each item,index in items
-        div(class = "col-sm-2" onclick = `buy (${index})`) Brand : #{item.mobile_brand}
-        div(class = "col-sm-2" onclick = `buy (${index})`) Specification : #{item.mobile_specification}
-        div(class = "col-sm-2" onclick = `buy (${index})`) Cost : #{item.mobile_cost}
+        - let destination = `dispatch(\"/resource/update?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Item #{item.mobile_brand}(#{item.mobile_specification}) is #{item.mobile_cost}
         br
         br
-
+        button.btn( class="btn-primary ml-1", onclick= destination) Update
+       
   script.
-    function buy(itemNum){
-      alert(`You purchased item ${itemNum+1}`)
-    } 
+    function dispatch(path){
+      window.location.href=path
+    }

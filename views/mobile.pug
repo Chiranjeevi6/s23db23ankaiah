@@ -1,18 +1,22 @@
 extends layout
- 
+
 block content
   h1= title
+  - let des = `dispatch(\"/mobile/create\")`
+  button.btn( class="btn-primary ml-1" onclick= des) Create
   -
     let items  = results
   div(class= "container-fluid")
-    div(class = "row m-1")
+    div(class = "col m-1")
       each item,index in items
-        - let destination = `dispatch(\"/resource/update?id=${item._id}\")`
+        - let destination = `dispatch(\"/mobile/update?id=${item._id}\")`
+        - let destination1 = `dispatch(\"/mobile/detail?id=${item._id}\")`
+        - let destination2 = `dispatch(\"/mobile/delete?id=${item._id}\")`
         div(class="row-sm-2", class="m-1") Item #{item.mobile_brand}(#{item.mobile_specification}) is #{item.mobile_cost}
-        br
-        br
         button.btn( class="btn-primary ml-1", onclick= destination) Update
-       
+        button.btn( class="btn-primary ml-1", onclick= destination1) Details
+        button.btn( class="btn-primary ml-1", onclick= destination2) Delete
+        
   script.
     function dispatch(path){
       window.location.href=path

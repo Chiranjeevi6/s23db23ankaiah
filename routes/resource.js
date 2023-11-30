@@ -14,7 +14,6 @@ router.delete('/mobile/:id', mobile_controller.mobile_delete);
 router.put('/mobile/:id', mobile_controller.mobile_update_put);
 router.get('/mobile/:id', mobile_controller.mobile_detail);
 router.get('/mobile', mobile_controller.mobile_list);
-router.get('/detail', mobile_controlers.mobile_view_one_Page);
 router.get('/create',secured, mobile_controller.mobile_create_Page);
 router.get('/delete',secured, mobile_controller.mobile_delete_Page);
 router.get('/update',secured,mobile_controller.mobile_update_Page);
